@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Object detection lab · Kpo Leung</title>
+  <meta name="description" content="Try object detection in your browser — nothing is uploaded. A long-term sample page for Field Notes listeners." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./assets/lab.css" />
+</head>
+<body>
+  <main>
+    <p class="nav"><a href="/">Home</a> · <a href="/notes/">Field notes</a> · <span>Lab</span></p>
+
+    <header class="card hero">
+      <p class="cat">Lab · Object detection</p>
+      <h1>See what’s in the frame</h1>
+      <p class="lede">
+        A small in-browser demo that draws boxes and labels on an image or webcam view.
+        Built so listeners of <em>Field Notes with Kpo</em> can try the idea behind YOLO-style detection —
+        without sending your pixels to a server.
+      </p>
+      <p class="meta">Runs on-device via TensorFlow.js <strong>COCO-SSD</strong> (Apache-2.0). Not Ultralytics YOLO weights — see licensing note below.</p>
+      <p class="ep-link">Podcast: <a href="#ep02">26W40-EP02 — episode coming soon</a></p>
+    </header>
+
+    <section class="card" aria-labelledby="try-heading">
+      <h2 id="try-heading">Try it</h2>
+      <p class="hint">Upload a still photo, run <strong>Live</strong> webcam detection, or <strong>Capture</strong> one frame (lighter on phones). Nothing leaves this tab.</p>
+      <div class="toolbar">
+        <label class="btn btn-primary file-btn">
+          Upload image
+          <input type="file" id="fileInput" accept="image/*" hidden />
+        </label>
+        <button type="button" class="btn btn-secondary" id="webcamBtn">Start webcam</button>
+        <button type="button" class="btn btn-secondary" id="captureBtn" disabled>Capture</button>
+        <button type="button" class="btn btn-secondary" id="stopBtn" disabled>Stop webcam</button>
+        <button type="button" class="btn btn-secondary" id="detectBtn" disabled>Detect</button>
+      </div>
+      <p class="toolbar-note"><a id="saveLink" class="save-link" hidden download="field-notes-capture.png" href="#">Save image</a></p>
+      <p class="status" id="status" role="status">Loading model…</p>
+      <div class="stage-wrap">
+        <canvas id="canvas" width="640" height="480" aria-label="Detection canvas"></canvas>
+        <video id="video" playsinline webkit-playsinline muted autoplay hidden></video>
+      </div>
+      <div class="caption-box" id="captionBox" hidden>
+        <p class="caption-en" id="captionEn" lang="en"></p>
+        <p class="caption-zh" id="captionZh" lang="zh-Hant"></p>
+        <p class="caption-note">Built from detected labels, not a full AI caption — context may be missing. · 由偵測標籤組句，不是完整圖像描述，可能漏掉情境。</p>
+      </div>
+      <ul class="detections" id="detectionList" aria-live="polite"></ul>
+    </section>
+
+    <section class="card" aria-labelledby="samples-heading">
+      <h2 id="samples-heading">Samples</h2>
+      <p class="hint">Curated cases — this list is meant to grow over time (<code>assets/samples.json</code>).</p>
+      <div class="samples" id="samples"></div>
+    </section>
+
+    <section class="card" aria-labelledby="about-heading">
+      <h2 id="about-heading">What this is</h2>
+      <p>
+        “YOLO” (You Only Look Once) is a family of real-time detectors that look at an image in one pass and propose boxes + labels.
+        This page uses a related, browser-friendly model (<strong>COCO-SSD</strong>) so you can feel the idea: what it catches, what it misses, how lighting and angle matter.
+      </p>
+      <p>
+        It is a teaching sample, not a security product. Clear scenes work better than clutter. A pretty demo is not a production system.
+      </p>
+      <p>
+        <strong>Live</strong> keeps detecting every moment; <strong>Capture</strong> freezes one frame, then stops the camera so phones stay cooler.
+      </p>
+    </section>
+
+    <section class="card privacy" aria-labelledby="privacy-heading">
+      <h2 id="privacy-heading">Privacy</h2>
+      <p>
+        <strong>Nothing is uploaded</strong> from this page for detection. Images and webcam frames are processed locally in your browser.
+        The model files load from public CDNs / model storage on first use (same as other TensorFlow.js demos).
+        Stop the webcam when you are done; closing the tab ends the session.
+      </p>
+    </section>
+
+    <section class="card" aria-labelledby="lic-heading">
+      <h2 id="lic-heading">Libraries &amp; license</h2>
+      <ul class="plain">
+        <li>@tensorflow/tfjs@4.22.0 — <a href="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js">jsDelivr CDN</a> (Apache-2.0)</li>
+        <li>@tensorflow-models/coco-ssd@2.2.3 — <a href="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.3/dist/coco-ssd.min.js">jsDelivr CDN</a> (Apache-2.0)</li>
+        <li>Default weights: SSD Lite MobileNet v2 via TensorFlow.js model hosting</li>
+      </ul>
+      <p class="hint">Why not Ultralytics YOLO here? Those releases are AGPL-3.0 (or Enterprise). For a closed personal site without AGPL’ing the whole project, a permissive stack is safer. Details: <a href="./licensing.html">licensing notes</a>.</p>
+    </section>
+
+    <section class="card" id="ep02" aria-labelledby="ep-heading">
+      <h2 id="ep-heading">Field Notes</h2>
+      <p>
+        <strong>26W40-EP02</strong> — <em>YOLO, Plainly — and a Demo You Can Try</em> —
+        <span class="soon">episode coming soon</span> on Spotify (<em>Field Notes with Kpo</em>).
+      </p>
+      <p class="hint">Related note: <a href="/notes/yolo-agent-poc.html">YOLO + agent — small video PoC</a> · <a href="/">kpoleung.com</a></p>
+    </section>
+
+    <p class="nav"><a href="/">← Home</a></p>
+  </main>
+  <footer>
+    <a href="/">kpoleung.com</a> · Lab prototype (local) · Detection on-device
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.3/dist/coco-ssd.min.js"></script>
+  <script src="./assets/caption.js"></script>
+  <script src="./assets/app.js"></script>
+</body>
+</html>

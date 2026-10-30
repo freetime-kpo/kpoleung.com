@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Licensing · Object detection lab · Kpo Leung</title>
+  <meta name="description" content="Licensing notes for the in-browser object detection lab on kpoleung.com." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./assets/lab.css" />
+  <style>
+    .prose p { color: #44403c; line-height: 1.6; font-size: 1.02rem; margin: 0 0 0.85rem; }
+    .prose h2 { margin-top: 0.25rem; }
+    .prose table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin: 0 0 1rem; }
+    .prose th, .prose td { border: 1px solid var(--line); padding: 0.5rem 0.55rem; text-align: left; vertical-align: top; }
+    .prose th { background: #fafaf9; }
+    .prose ul { margin: 0 0 0.85rem; padding-left: 1.2rem; color: #44403c; line-height: 1.55; }
+    .prose li { margin-bottom: 0.35rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="nav"><a href="/">Home</a> · <a href="./">Lab</a> · <span>Licensing</span></p>
+    <article class="card prose">
+      <p class="cat">Lab · Licensing</p>
+      <h1>In-browser object detection</h1>
+      <p class="meta">Updated 2026-09-24 HKT · Research notes for the personal-site lab (not legal advice).</p>
+
+      <h2>Recommendation</h2>
+      <p><strong>Use TensorFlow.js COCO-SSD (Apache-2.0) for the public personal-site demo.</strong></p>
+      <ul>
+        <li>Runs fully in the visitor’s browser (WebGL/CPU); no server GPU.</li>
+        <li>Apache-2.0 is permissive: fine for a personal site without AGPL copyleft on the whole project.</li>
+        <li>Mature CDN distribution (<code>@tensorflow/tfjs</code> + <code>@tensorflow-models/coco-ssd</code>).</li>
+        <li>Good enough for a teaching sample (COCO classes); not a claim of “Ultralytics YOLO production accuracy.”</li>
+      </ul>
+      <p>Name the page honestly: “object detection sample (COCO-SSD)” while the podcast can still explain the YOLO <em>idea</em>. Do not imply the lab page loads Ultralytics weights if it does not.</p>
+
+      <h2>Comparison</h2>
+      <p>Verify again before any production change.</p>
+      <table>
+        <thead>
+          <tr><th>Option</th><th>License</th><th>Browser-friendly?</th><th>Fit for public personal site</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Ultralytics YOLOv5/v8/11</td><td>AGPL-3.0 (Enterprise for closed use)</td><td>Possible via exports, but AGPL follows</td><td>Risky unless whole derivative is AGPL’d or Enterprise licensed</td></tr>
+          <tr><td>YOLOX</td><td>Apache-2.0</td><td>Needs your own ONNX/TFJS path</td><td>Good license; more build work</td></tr>
+          <tr><td><strong>TF.js COCO-SSD</strong></td><td><strong>Apache-2.0</strong></td><td>Yes (official)</td><td><strong>Recommended for this lab</strong></td></tr>
+          <tr><td>MediaPipe Object Detector</td><td>Apache-2.0 (SDK); confirm each model bundle</td><td>Yes (WASM)</td><td>Strong alternative</td></tr>
+          <tr><td>RT-DETR variants</td><td>Varies (Ultralytics port → AGPL)</td><td>Uneven</td><td>Only with a clearly permissive browser build</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Sources</h2>
+      <ul>
+        <li><a href="https://www.ultralytics.com/license" rel="noopener">Ultralytics License</a> (AGPL vs Enterprise)</li>
+        <li><a href="https://www.ultralytics.com/legal/terms-of-service" rel="noopener">Ultralytics Terms §5</a></li>
+        <li><a href="https://www.ultralytics.com/pricing" rel="noopener">Ultralytics pricing</a> (Free/Pro = AGPL)</li>
+        <li><a href="https://github.com/tensorflow/tfjs-models/tree/master/coco-ssd" rel="noopener">TF.js coco-ssd README</a></li>
+        <li><a href="https://www.npmjs.com/package/@tensorflow-models/coco-ssd" rel="noopener">npm @tensorflow-models/coco-ssd</a> (Apache-2.0)</li>
+        <li><a href="https://github.com/Megvii-BaseDetection/YOLOX" rel="noopener">YOLOX</a> (Apache-2.0)</li>
+        <li><a href="https://github.com/google-ai-edge/mediapipe/blob/master/LICENSE" rel="noopener">MediaPipe LICENSE</a></li>
+        <li><a href="https://www.jsdelivr.com/package/npm/@mediapipe/tasks-vision" rel="noopener">MediaPipe Tasks Vision</a></li>
+      </ul>
+
+      <h2>CDN libraries used by this lab</h2>
+      <ul>
+        <li><code>@tensorflow/tfjs@4.22.0</code> via jsDelivr</li>
+        <li><code>@tensorflow-models/coco-ssd@2.2.3</code> via jsDelivr</li>
+        <li>Default weights: SSD Lite MobileNet v2 via TensorFlow.js model hosting</li>
+      </ul>
+      <p>Retain Apache notices; do not strip license headers if you later vendor instead of CDN.</p>
+    </article>
+    <p class="nav"><a href="./">← Back to lab</a></p>
+  </main>
+  <footer><a href="/">kpoleung.com</a> · Lab licensing note</footer>
+</body>
+</html>
