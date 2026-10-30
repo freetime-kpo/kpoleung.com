@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lab YOLO update — searchable frames &amp; a car-park Web App · Field Notes · Kpo Leung</title>
+  <meta name="description" content="Browser lab for YOLO-style detection, RTSP frames as searchable text, and a small on-device car-park plate Web App idea." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./_shared.css" />
+</head>
+<body>
+  <main>
+    <p class="nav"><a href="/">Home</a> · <a href="/notes/">Field notes</a> · <span>Solutions</span></p>
+    <article class="card">
+      <p class="cat">Solutions</p>
+      <h1>Lab YOLO update — searchable frames &amp; a car-park Web App</h1>
+      <p class="meta">2026-09-24</p>
+
+<p>Field Notes, continuing the YOLO thread.</p>
+<p>Last episode I sketched a small idea: detect → describe → act, then jump to a timestamp instead of scrubbing video. This week is an update — with something you can try yourself.</p>
+<p>I built a browser lab at <a href="/go/yolo-note">https://kpoleung.com/lab/yolo/</a>. It runs in the tab. No upload. No fee. Webcam or a local photo. Under the hood it’s TensorFlow.js with COCO-SSD (Apache-2.0) — YOLO-style, not Ultralytics on a public personal page, because AGPL gets awkward there. The scene line under the picture is built from the boxes the model already found: labels, counts, positions. There’s a Capture button when the camera is live. Honest limit: the demo only knows the usual everyday object set (about eighty COCO classes). Your own objects, uniforms, or actions need custom training — Colab and something like MediaPipe Model Maker fit that path, with a licence and export story that still aims at browser or phone.</p>
+
+<figure>
+  <img src="https://kpoleung.com/notes/img/lab-yolo-update-carpark-webapp.png" width="1200" height="627" alt="Infographic with two columns: RTSP stream to searchable text metadata and NVR jump on the left; car-park phone Web App steps — read plate, log bay, photo record, offline use, guard confirms — on the right. Footer: Field Notes with Kpo and kpoleung.com/lab/yolo/" />
+  <figcaption>Two small patterns from this week: searchable frames from an RTSP stream, and an on-device car-park patrol aid.</figcaption>
+</figure>
+
+<p class="lab-link">Try the lab: <a href="/go/yolo-note">https://kpoleung.com/lab/yolo/</a> — runs in your browser; nothing is uploaded for detection.</p>
+
+<p>The bigger pattern, updated from last time: an agent watches an RTSP stream, grabs frames on an interval, writes text metadata with a timestamp, and later you search the text instead of watching hours. When a line hits, jump to that time in the NVR or RTSP recording — if playback-by-time is supported. Cameras are sensitive; keep retention and search access intentional.</p>
+<p>Part B is new. Small on-device apps handle simple jobs; complex ones still need professional systems. Car-park patrols burn time copying plates and bay numbers. A phone Web App that detects, OCRs (plain COCO-SSD won’t read plates), logs plate + bay + photo, and works offline in a basement, can cut the copying. A guard confirms each read. Plates can be personal data — keep records local or controlled. I’ve built a sample, HK Plate Scanner, that reads plates on the phone: <a href="/go/lpc-note">try it here</a> (the first load downloads the model, then it’s cached).</p>
+<p>Not a product pitch. A field note. The episode is voiced by two AI hosts — Holiday and Feiertag — on <em>Field Notes with Kpo</em>. Poke the lab if you’re curious.</p>
+
+      <div class="listen">
+        <strong>Field Notes</strong>
+        <span>Related to <em>Field Notes with Kpo</em> · <strong>26W40-EP02</strong> (episode coming soon — Spotify link when it is live).</span>
+      </div>
+    </article>
+    <p class="nav"><a href="/notes/">← All field notes</a></p>
+  </main>
+  <footer><a href="/">kpoleung.com</a></footer>
+</body>
+</html>
