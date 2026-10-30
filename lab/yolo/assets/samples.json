@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "updated": "2026-09-24",
+  "note": "Extend this list over time. Prefer local images under ./assets/samples/. Photo credits in ATTRIBUTION.txt.",
+  "samples": [
+    {
+      "id": "cat",
+      "title": "Cat photo",
+      "blurb": "Clear subject \u2014 often detects as cat.",
+      "image": "./assets/samples/cat.jpg",
+      "expect": [
+        "cat"
+      ]
+    },
+    {
+      "id": "bicycle",
+      "title": "Bicycle",
+      "blurb": "Vehicle / bike class check.",
+      "image": "./assets/samples/bicycle.jpg",
+      "expect": [
+        "bicycle"
+      ]
+    },
+    {
+      "id": "cup",
+      "title": "Coffee cup",
+      "blurb": "Tableware class check.",
+      "image": "./assets/samples/cup.jpg",
+      "expect": [
+        "cup",
+        "bottle"
+      ]
+    },
+    {
+      "id": "street",
+      "title": "Street / people",
+      "blurb": "Busier scene \u2014 person / car style classes.",
+      "image": "./assets/samples/people-crossing.jpg",
+      "expect": [
+        "person",
+        "car"
+      ]
+    },
+    {
+      "id": "color-blocks",
+      "title": "Colour blocks",
+      "blurb": "Abstract shapes \u2014 often no detections (negative control).",
+      "image": "./assets/samples/color-blocks.png",
+      "expect": []
+    },
+    {
+      "id": "blank-card",
+      "title": "Blank card",
+      "blurb": "Almost empty frame \u2014 expect few or no boxes.",
+      "image": "./assets/samples/blank-card.png",
+      "expect": []
+    }
+  ]
+}
