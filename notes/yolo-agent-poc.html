@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>YOLO + agent — small video PoC · Field Notes · Kpo Leung</title>
+  <meta name="description" content="Detect → interpret → act on a narrow scene — pros, cons, and why a cute PoC is not a platform." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./_shared.css" />
+</head>
+<body>
+  <main>
+    <p class="nav"><a href="/">Home</a> · <a href="/notes/">Field notes</a> · <span>Solutions</span></p>
+    <article class="card">
+      <p class="cat">Solutions</p>
+      <h1>YOLO + agent — small video PoC</h1>
+      <p class="meta">2026-09-16</p>
+      
+<p>For Solutions I want a small idea, not a platform pitch: <strong>YOLO plus an agent</strong> as a simple video PoC.</p>
+<p>I tried it the humble way on my OpenClaw setup — asking YOLO to find people in photos: famous faces, or even myself. About fifty-fifty unless the picture is obvious. Unclear shots are hard. Useful honesty. Not magic.</p>
+<p>You don’t have to use it for everything. But you can use it more for PoCs and test projects.</p>
+<p>I’ve also tried simple counting and spotting jobs: counting people, counting goods, recognising a person in frame. Same lesson — it works when the scene is clear enough; it struggles when it isn’t. That’s exactly why a <strong>small</strong> PoC is valuable before anyone buys a stack of cameras and a full analytics programme.</p>
+<p>The old VA pattern was heavy: many samples, long test runs, sometimes buying lenses first.<br>
+With YOLO you can flip it: collect some footage first, ask what is on the feed, then put an agent on that description — flag what looks abnormal, keep a timeline of frame captures, store those readings. When something happens, jump back to the clip before and after that timestamp.</p>
+<p><strong>Pros:</strong> cheap to start; forces a narrow question; early truth about cameras and false positives; tests whether “next step” automation is useful; builds a retrieval trail.</p>
+<p><strong>Cons:</strong> demo scenes lie; lighting and angles break you; alerts get noisy; agents can mis-route junk; a cute PoC is not production; face or object ID can be hit-or-miss.</p>
+<p>Small loop: detect, interpret, act. Enough to decide whether to scale — not a shortcut past design.</p>
+
+      <div class="listen">
+        <strong>Listen</strong>
+        <span>Listen on <a href="https://open.spotify.com/episode/6vlucYeJOu3rMny81gE8q1"><em>Field Notes with Kpo</em> (Spotify)</a> — <strong>26W38-EP01</strong> is live.</span>
+      </div>
+    </article>
+    <p class="nav"><a href="/notes/">← All field notes</a></p>
+  </main>
+  <footer><a href="/">kpoleung.com</a></footer>
+</body>
+</html>
