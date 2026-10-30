@@ -1,0 +1,9 @@
+Sample photos (Unsplash License — https://unsplash.com/license):
+- cat.jpg — Unsplash photo-1514888286974-6c03e2ca1dba
+- bicycle.jpg — Unsplash photo-1505705694340-019e1e335916
+- cup.jpg — Unsplash photo-1514228742587-6b1558fcca3d
+- people-crossing.jpg — Unsplash photo-1428908728789-d2de25dbd4e2
+
+Generated locally (no third-party photo license):
+- color-blocks.png, blank-card.png
+- desk-mug.svg, street-sketch.svg, pet-sketch.svg (illustrations; detection may fail on line art)
