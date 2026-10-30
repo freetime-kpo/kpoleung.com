@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Save Kpo Leung · Contact</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <style>
+    :root { --bg:#f6f1e8; --ink:#1c1917; --muted:#78716c; --card:#fffcf7; --line:#e7e0d4; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; font-family: "DM Sans", system-ui, sans-serif; color: var(--ink);
+      background: radial-gradient(900px 500px at 50% -20%, #99f6e455, transparent 55%), var(--bg);
+      display: grid; place-items: center; padding: 1.5rem;
+    }
+    .card {
+      width: min(420px, 100%); background: var(--card); border: 1px solid var(--line);
+      border-radius: 24px; padding: 2rem 1.5rem; text-align: center;
+      box-shadow: 0 20px 50px -28px rgba(28,25,23,.35);
+    }
+    h1 { font-family: "Instrument Serif", Georgia, serif; font-weight: 400; font-size: 2rem; margin: 0 0 .5rem; }
+    p { color: var(--muted); line-height: 1.5; margin: 0 0 1.25rem; font-size: .95rem; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; width: 100%;
+      text-decoration: none; border-radius: 999px; padding: .95rem 1.1rem; font-weight: 600;
+      background: var(--ink); color: #fff; margin-bottom: .65rem;
+    }
+    .btn-secondary { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+    .meta { font-size: .8rem; color: var(--muted); margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Kpo Leung</h1>
+    <p>Tap below to download the contact file (<strong>.vcf</strong>) and add it to your phone.</p>
+    <a class="btn" id="download" href="./kpo.vcf" download="Kpo-Leung.vcf">Download contact (.vcf)</a>
+    <a class="btn btn-secondary" href="/">Open homepage</a>
+    <p class="meta">NFC landing · works best with a tap on Download if auto-open is blocked</p>
+  </main>
+  <script>
+    // Attempt auto-download for NFC taps; iOS often still needs the manual tap.
+    window.addEventListener('load', function () {
+      var a = document.getElementById('download');
+      try { a.click(); } catch (e) {}
+    });
+  </script>
+</body>
+</html>
