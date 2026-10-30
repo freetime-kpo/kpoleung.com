@@ -1,0 +1,122 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CRE Use of English 模擬試卷 B · Field Notes · Kpo Leung</title><link rel="canonical" href="https://kpoleung.com/notes/cre-english-mock-paper-b.html"><style>
+*{box-sizing:border-box}body{font-family:-apple-system,"PingFang HK","Noto Sans HK",system-ui,sans-serif;max-width:880px;margin:0 auto;padding:24px 18px 90px;line-height:1.7;color:#1b1b1b;background:#fafafa}
+h1{font-size:25px;margin:0 0 6px;border-bottom:3px solid #0b3d91;padding-bottom:9px}
+h2{font-size:19px;margin:34px 0 4px;color:#0b3d91}
+.sub,.hint{color:#666;font-size:13.5px}
+.passage{background:#fff;border:1px solid #e2e2e2;border-radius:10px;padding:14px 16px;margin:12px 0 18px;font-size:15px}
+.passage h3{margin:0 0 6px;font-size:14px;color:#888;letter-spacing:.4px}
+.q{background:#fff;border:1px solid #e2e2e2;border-radius:10px;padding:12px 14px;margin:9px 0}
+.stem{font-size:15px;margin-bottom:7px}
+.opts label{display:block;padding:4px 6px;border-radius:6px;cursor:pointer;font-size:14.8px}
+.opts label:hover{background:#eef3fb}
+.bar{position:sticky;bottom:0;background:#fff;border-top:1px solid #e2e2e2;padding:11px;margin-top:26px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;box-shadow:0 -2px 8px rgba(0,0,0,.06)}
+button{font-size:15px;padding:9px 17px;border-radius:8px;border:0;cursor:pointer;font-weight:600}
+.pri{background:#0b3d91;color:#fff}.gh{background:#e9edf3}
+.res{background:#fff;border:2px solid #0b3d91;border-radius:12px;padding:16px;margin-top:22px}
+.big{font-size:32px;font-weight:800;color:#0b3d91}
+table{width:100%;border-collapse:collapse;margin-top:9px;font-size:14px}td,th{border:1px solid #e2e2e2;padding:6px 8px;text-align:left}
+.exp{border-left:3px solid #ddd;padding:1px 0 1px 11px;margin:8px 0 3px;font-size:14.3px;background:#fbfbfb}
+.ok{color:#0a7d3c;font-weight:700}.no{color:#c0392b;font-weight:700}
+</style></head><body>
+<p class="nav" style="font-size:14px;color:#666;margin:0 0 14px"><a href="/" style="color:#666;text-decoration:none">Home</a> · <a href="/notes/" style="color:#666;text-decoration:none">Field notes</a> · <a href="./cre-english-use-of-english.html" style="color:#666;text-decoration:none">CRE Use of English</a> · <span>模擬卷 B</span></p>
+<h1>CRE — Use of English 模擬試卷 B</h1>
+<div class="sub">40 題 · 建議 70 分鐘 · 第二份，難度同 A 卷相若、題型更偏「句子完成」同「段落弱點」<br>答完所有題先撳「提交試卷」，分數同解析即刻出。</div>
+<div class="bar"><button class="pri" onclick="grade()">提交試卷（出分 + 解析）</button><button class="gh" onclick="resetAll()">清空重做</button><span class="hint" id="prog">已答 0 / 40</span></div>
+<div id="exam"></div>
+<div id="out"></div>
+<script>
+var PASSAGES=[
+["Passage A","Governments have long argued that a single national curriculum produces national cohesion. The argument is intuitively appealing, but the evidence is thinner than the rhetoric suggests. Where countries have maintained a single national curriculum, differences in achievement between regions have often persisted, sometimes in the same direction as before the curriculum was introduced. What a curriculum can do is define the minimum; what it cannot do is make pupils learn at the same rate. The experience of the last two decades points to a more useful conclusion. Curriculum reform delivers the largest gains where it is combined with teacher training, materials and assessment designed to reflect it. Where these are missing, a reform may change what is written in a document and little else. This is not an argument against national standards, which do guarantee a minimum entitlement for every child. It is an argument for treating curriculum as one instrument among several, rather than as the instrument that carries the entire weight of an education system."],
+["Passage B","Anyone who has run an organisation for longer than a week has noticed that the tasks nobody complains about are rarely the ones that matter most. The email that arrives late, the form that is submitted twice, the meeting that could have been a message: these generate a steady, low-level irritation precisely because they are small, frequent and legible. Large failures attract attention by their very size. Small failures escape it, and they accumulate. A team that loses twenty minutes a day to avoidable coordination will spend a week a year doing nothing at all, without anyone quite being able to say when the time went. The remedy is rarely dramatic. It usually involves deciding that one recurring irritation is worth eliminating, and accepting that the elimination will be boring. Organisations that adopt this habit tend to discover that the same approach works on larger problems, and that the habit itself, rather than any particular solution, is what produces the improvement."]
+];
+var SECTIONS=["Part 1 — Comprehension（閱讀理解）","Part 2 — Error Identification（揪錯）","Part 3 — Sentence Completion（句子填空）","Part 4 — Paragraph Improvement（段落改寫）"];
+var SEC_HINT=["以下每題配一篇短文，答主旨、推論、詞義、作用。","每題一句，有一個部分錯咗，揀「應該改成乜」。","揀最通順正確嘅填法。","以下每段有一個最主要弱點，揀指出問題最準嗰個。"];
+var Q=[
+[0,"What is the main claim of Passage A?","Curriculum reform works only when supported by training, materials and assessment","National curricula should be abolished","Regional differences in achievement are unavoidable","Teachers are the main cause of regional differences","第三、四段：curriculum 本身唔夠，要配合其他嘢先見效。"],
+[0,"\"What a curriculum can do is define the minimum; what it cannot do is make pupils learn at the same rate\" suggests that","curricula should set higher minimum standards","a single curriculum cannot remove differences in learning pace","pupils in slower regions need more funding","the word \"minimum\" is used loosely","對比句 = 承認 curriculum 有用（最低標準）但唔夠（拉平學習速度）。"],
+[0,"Which of the following is NOT mentioned in Passage A?","the cost of producing curriculum documents","the need for teacher training","the value of a minimum entitlement","the limits of curriculum reform","通讀三段：冇提過「製作課程文件嘅成本」。"],
+[0,"\"national cohesion\" in para 1 is presented as","a result that has been repeatedly disproved","an idea whose appeal is stronger than its evidence","the main purpose of the education system","a problem caused by regional differences","\"intuitively appealing, but the evidence is thinner than the rhetoric\"。"],
+[0,"The writer's attitude to national standards is","hostile","neutral and indifferent","qualified but broadly supportive","entirely negative","末段 explicitly：not an argument against national standards，只係反對過度倚賴。"],
+[1,"Which best describes the writer's purpose in Passage B?","To explain why small, routine failures are easily overlooked but costly","To recommend a particular new productivity tool","To compare two types of organisational failure","To prove that large failures matter more than small ones","首段對比 large vs small，第二段講 small 點累積。"],
+[1,"\"legible\" (para 1) is closest in meaning to","expensive to correct","easy to notice and identify","written in large print","difficult to remember","small failures escape attention = 因為易被識別反而「唔再煩」；legible = 清楚見得到。"],
+[1,"\"will spend a week a year doing nothing at all, without anyone quite being able to say when the time went\" suggests that","the team should hire more staff","the loss of time is hard to trace and therefore easy to ignore","the workers are careless","the team works too fast","無法追溯 = 無法察覺 = 唔會有人反對。"],
+[1,"The word \"boring\" (para 2) is used to suggest that","the remedy is dull but effective","the remedy has failed","the writer finds the topic uninteresting","the organisation is lacking in resources","remedy 係 boring 但有效 → 耐煩、先做重複嘅小事。"],
+[1,"Which conclusion does the writer draw about the habit itself?","It is the habit, rather than any single solution, that produces improvement","It works only for large organisational problems","It should be replaced by more ambitious measures","It has no value for large problems","末句 explicit。"],
+[null,"If I <u>would</u> have known about the meeting, I would have stayed at home.","had","should","might","was","If + had done（第三類條件句）。"],
+[null,"The number of participants <u>are</u> increasing each year.","is","are","have been","was","The number of + 複數名詞 → 單數 is。"],
+[null,"He asked me whether <u>if</u> I had finished the report.","I","had","did I","I had not","whether 已經表示間接問句，唔可以再加 if。"],
+[null,"The team's performance <u>improving</u> since the new coach arrived.","has improved","improved","improves","had improved","since + 過去時點 → 現在完成式 has improved。"],
+[null,"One of the main <u>reasons</u> for the delay was a shortage of staff.","reason","reasons","cause","causes","One of the + 單數名詞 → reasons → reason。"],
+[null,"I would have <u>went</u> to the meeting if I had known about the change.","gone","go","going","gone to","would have + 過去分詞 → gone。"],
+[null,"The results, together with all supporting data, <u>was</u> published online.","were","is","has been","are being","together with 不改變主語，主語為 The results（複數）→ were。"],
+[null,"She is one of those people <u>who</u> believes everything they read.","believe","believes","believing","believed","one of those + 複數 + who → who = those who → believe。"],
+[null,"There <u>are</u> less demand for printed newspapers than there was ten years ago.","is","was","have been","were","less demand 係不可數 → There is less demand。"],
+[null,"It was in the annex <u>which</u> the archive was built.","where","that","what","when","先行詞是地點（annex）→ 用 where 引導地點狀語从句。"],
+[null,"The report emphasises <u>of</u> the need for reform rather than defending current policy.","at","on","of","to make","emphasise 後接名詞 → the need（及物動詞）。"],
+[null,"She has a tendency to interrupt, <u>which</u> makes conversation difficult.","and","which","that","so","非限制性定語從句 → which。"],
+[null,"The sooner the problem is addressed, <u>the less</u> the damage will be.","the more","the less","the smaller","as little","the + 比較級, the + 比較級。"],
+[null,"It is unlikely that the proposal will be accepted, <u>given</u> the current financial climate.","considering","given","owing","due","given = 考慮到（過去分詞片語作條件狀語）。"],
+[null,"The instructions were too complex for <u>any</u> to follow without help.","no one","everyone","anyone","some","too…for + 人 + to do → for anyone。"],
+[null,"The government has introduced a series of measures <u>designed to restore</u> public confidence in the system.","intended to restore","aiming at restoring","designed to restore","which restores","measures 係「為了」而設 → designed to do。"],
+[null,"Had the warning been issued earlier, the damage <u>would have been</u> considerably less severe.","will be","would be","was","would have been","Had + 過去分詞 = 虛擬過去完成式 → would have been。"],
+[null,"The speaker was interrupted twice, <u>and</u> the second time by a question from the floor.","but","so","then","and","並列連接 = and。"],
+[null,"The work is complex, <u>though</u> it is rewarding.","though","because","since","therefore","讓步連接詞 though。"],
+[null,"The evidence is <u>far too slight</u> to support such a strong conclusion.","quite too slight","slightly too light","far too slight","far too slight an","too…to structure：far too slight。"],
+[null,"There are many reasons why the museum should stay open at weekends. For one thing, more people can visit. Also, opening at weekends would increase revenue. Furthermore, visitors who come on weekdays are often disappointed by the queues, which is a problem. In conclusion, the museum should open at weekends. <br><br>What is the main weakness?","The points are listed but not developed, so the conclusion is unsupported","It would be better to say specifically that young people would be attracted","The paragraph should mention that staff are underpaid","The building is very old","只列點冇解釋 → 結論無支撐。"],
+[null,"In my opinion, the policy is clearly wrong. Everyone knows it. It will fail. We should scrap it immediately. <br><br>What is the main weakness?","The paragraph uses too many short sentences","The writer's opinion is stated as though it were established fact","The paragraph lacks a topic sentence","The word \"immediately\" should be removed","意見當事實，語氣不當。"],
+[null,"The library was built in 1911. It is in a conservation area. It has a reading room on the ground floor and a small exhibition space upstairs that is rarely used. Its most striking feature is the number of stairs. <br><br>What is the main weakness?","The date should be removed","The description of the stairs should come first","The reference to the rarely used exhibition space is irrelevant","The paragraph lacks a conclusion","無關細節 = 干擾主旨。"],
+[null,"There are three reasons. First, cost. Second, time. Third, cost again. Cost and time are the reasons. So the reasons are cost, time and cost. <br><br>What is the main weakness?","The paragraph repeats the same word too often","The first reason should be explained","The paragraph should be longer","The points do not build towards a coherent conclusion","自我重複 + 冇 coherent 結構。"],
+[null,"Some people argue that homework should be abolished. This is a controversial view. Others disagree. I think homework is useful. Therefore it should not be abolished. <br><br>What is the main weakness?","The writer's conclusion is asserted without adequate support","The opposing view is described too briefly","The paragraph contains too many examples","The topic sentence is missing","自稱 useful 但冇理由 = unsupported。"],
+[null,"The average score was 68. Nine out of ten students passed. In fact, 95 per cent of those who sat the test passed. <br><br>What is the main weakness?","The average score is too low","The two statistics presented are inconsistent","The percentage should be written as a fraction","The number of students should be given","90% vs 95% 自相矛盾。"],
+[null,"The scheme has been running for two years and has attracted many participants. It is convenient, cheap and well publicised. It should therefore be adopted by every school in the district. <br><br>What is the main weakness?","The paragraph is too short","The scheme's drawbacks are not considered","The word \"therefore\" is used correctly","The first sentence is irrelevant","只講好處就下結論 → one-sided。"],
+[null,"The manual explains how to operate the device in detail. It is available in twelve languages. It must be read before the device is switched on. <br><br>What is the main weakness?","The paragraph lacks a concluding sentence","The word \"detail\" should be removed","The instructions are given in a confusing order","The paragraph does not say why the manual matters","最尾嗰句先係重點，但冇同前面連起來。"],
+[null,"He is a competent administrator, and everyone respects him. He has never missed a deadline. He once reorganised the filing system without being asked. <br><br>What is the main weakness?","The paragraph is too short","The examples do not support the general claim","The word \"competent\" is too informal","The final example is irrelevant","連續三個例都係 support 同一個 claim → 例不夠針對性／無分析。"],
+[null,"The report recommends raising the age limit. It gives no financial estimate. It was written in a single week. The committee had no legal experts. <br><br>What is the main weakness?","Key evidence needed to assess the recommendation is missing","The paragraph has too many facts","The report should be shorter","The recommendation is too radical","irrelevancy vs missing evidence：呢度真正問題係缺財務評估，唔係離題。"],
+];
+var KEY=[0,1,2,1,2,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,2,1,1,1,2,2,3,3,0,2,0,1,2,3,0,1,1,3,1,0];
+var html="";
+for(var s=0;s<4;s++){
+  html+="<h2>"+SECTIONS[s]+"</h2><div class='hint'>"+SEC_HINT[s]+"</div>";
+  if(s===0){for(var p=0;p<2;p++){html+="<div class='passage'><h3>"+PASSAGES[p][0]+"</h3><p>"+PASSAGES[p][1]+"</p></div>";}}
+  for(var k=0;k<10;k++){
+    var i=s*10+k,q=Q[i];
+    html+="<div class='q'><div class='stem'><b>"+(i+1)+".</b> "+q[1]+"</div><div class='opts'>";
+    for(var o=0;o<4;o++){html+="<label><input type='radio' name='q"+(i+1)+"' value='"+o+"' onchange='upd()'> "+q[2+o]+"</label>";}
+    html+="</div></div>";
+  }
+}
+document.getElementById("exam").innerHTML=html;
+function upd(){var c=0;for(var i=1;i<=40;i++){if(document.querySelector("input[name=q"+i+"]:checked"))c++;}document.getElementById("prog").innerHTML="已答 "+c+" / 40";}
+function grade(){
+  var s=0,det=[],sec=[0,0,0,0],secm=[0,0,0,0];
+  for(var i=0;i<40;i++){
+    var el=document.querySelector("input[name=q"+(i+1)+"]:checked"),v=el?parseInt(el.value):-1,g=(v===KEY[i]);
+    if(g)s++;var si=Math.floor(i/10);if(g)sec[si]++;else if(v>=0)secm[si]++;
+    det.push({n:i+1,v:v,k:KEY[i],ok:g});
+  }
+  var o='<div class="res"><div class="big">'+s+" / 40（"+(s*2.5).toFixed(1)+"%）</div>";
+  o+="<table><tr><th>部分</th><th>答啱</th><th>答錯</th><th>冇答</th></tr>";
+  for(var j=0;j<4;j++){o+="<tr><td>"+SECTIONS[j].split("（")[0]+"</td><td class='ok'>"+sec[j]+"/10</td><td class='no'>"+secm[j]+"</td><td>"+(10-sec[j]-secm[j])+"</td></tr>";}
+  o+="</table>";
+  if(s<28){o+="<p style='color:#c0392b'><b>建議</b>：睇下邊一部分最低分，下次集中攻嗰部分。</p>";}
+  else if(s>=36){o+="<p style='color:#0a7d3c'><b>狀態好</b>：穩陣。</p>";}
+  o+="</div><h2>逐題解析</h2>";
+  for(var n=0;n<40;n++){var d=det[n],q=Q[n];
+    var your=d.v>=0?String.fromCharCode(65+d.v):"—";
+    o+="<div class='q'><div class='stem'><b>"+d.n+".</b> "+(d.ok?"<span class='ok'>✔ 答啱</span>":"<span class='no'>✘ 答錯</span>")+"　你揀："+your+"　正確："+String.fromCharCode(65+d.k)+"</div>";
+    o+="<div class='hint'>選項 "+String.fromCharCode(65+d.k)+": "+q[2+d.k]+"</div><div class='exp'>"+q[6]+"</div></div>";
+  }
+  document.getElementById("out").innerHTML=o;
+  window.scrollTo({top:document.getElementById("out").offsetTop-60,behavior:"smooth"});
+}
+function resetAll(){document.querySelectorAll("input[type=radio]").forEach(function(e){e.checked=false;});document.getElementById("out").innerHTML="";upd();window.scrollTo({top:0,behavior:"smooth"});}
+upd();
+</script>
+
+<p class="nav" style="font-size:14px;color:#666;margin:28px 0 0"><a href="./cre-english-use-of-english.html" style="color:#0b3d91">← CRE Use of English 練習</a>
+ · <a href="./cre-english-mock-paper-a.html" style="color:#0b3d91">模擬卷 A</a>
+ · <a href="/notes/" style="color:#0b3d91">All field notes</a></p>
+<footer style="margin-top:1.5rem;text-align:center;color:#666;font-size:13px"><a href="/" style="color:#0b3d91">kpoleung.com</a> · <a href="/notes/" style="color:#0b3d91">Field notes</a></footer>
+</body></html>

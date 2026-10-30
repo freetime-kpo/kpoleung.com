@@ -1,0 +1,122 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CRE Use of English 模擬試卷 A · Field Notes · Kpo Leung</title><link rel="canonical" href="https://kpoleung.com/notes/cre-english-mock-paper-a.html"><style>
+*{box-sizing:border-box}body{font-family:-apple-system,"PingFang HK","Noto Sans HK",system-ui,sans-serif;max-width:880px;margin:0 auto;padding:24px 18px 90px;line-height:1.7;color:#1b1b1b;background:#fafafa}
+h1{font-size:25px;margin:0 0 6px;border-bottom:3px solid #0b3d91;padding-bottom:9px}
+h2{font-size:19px;margin:34px 0 4px;color:#0b3d91}
+.sub,.hint{color:#666;font-size:13.5px}
+.passage{background:#fff;border:1px solid #e2e2e2;border-radius:10px;padding:14px 16px;margin:12px 0 18px;font-size:15px}
+.passage h3{margin:0 0 6px;font-size:14px;color:#888;letter-spacing:.4px}
+.q{background:#fff;border:1px solid #e2e2e2;border-radius:10px;padding:12px 14px;margin:9px 0}
+.stem{font-size:15px;margin-bottom:7px}
+.opts label{display:block;padding:4px 6px;border-radius:6px;cursor:pointer;font-size:14.8px}
+.opts label:hover{background:#eef3fb}
+.bar{position:sticky;bottom:0;background:#fff;border-top:1px solid #e2e2e2;padding:11px;margin-top:26px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;box-shadow:0 -2px 8px rgba(0,0,0,.06)}
+button{font-size:15px;padding:9px 17px;border-radius:8px;border:0;cursor:pointer;font-weight:600}
+.pri{background:#0b3d91;color:#fff}.gh{background:#e9edf3}
+.res{background:#fff;border:2px solid #0b3d91;border-radius:12px;padding:16px;margin-top:22px}
+.big{font-size:32px;font-weight:800;color:#0b3d91}
+table{width:100%;border-collapse:collapse;margin-top:9px;font-size:14px}td,th{border:1px solid #e2e2e2;padding:6px 8px;text-align:left}
+.exp{border-left:3px solid #ddd;padding:1px 0 1px 11px;margin:8px 0 3px;font-size:14.3px;background:#fbfbfb}
+.ok{color:#0a7d3c;font-weight:700}.no{color:#c0392b;font-weight:700}
+</style></head><body>
+<p class="nav" style="font-size:14px;color:#666;margin:0 0 14px"><a href="/" style="color:#666;text-decoration:none">Home</a> · <a href="/notes/" style="color:#666;text-decoration:none">Field notes</a> · <a href="./cre-english-use-of-english.html" style="color:#666;text-decoration:none">CRE Use of English</a> · <span>模擬卷 A</span></p>
+<h1>CRE — Use of English 模擬試卷 A</h1>
+<div class="sub">40 題 · 建議 70 分鐘 · 對齊 CRE Use of English 結構（4 部分 × 10 題）<br>答完所有題先撳「提交試卷」，分數同解析即刻出。</div>
+<div class="bar"><button class="pri" onclick="grade()">提交試卷（出分 + 解析）</button><button class="gh" onclick="resetAll()">清空重做</button><span class="hint" id="prog">已答 0 / 40</span></div>
+<div id="exam"></div>
+<div id="out"></div>
+<script>
+var PASSAGES=[
+["Passage A","The rise of remote working was initially presented as a temporary response to a public health emergency. Within two years, however, it had become a permanent feature of the working week for a significant share of the labour force. Employers quickly discovered that productivity could be preserved, and in some sectors even increased, when staff were no longer required to commute. The benefits, though, are not evenly distributed. Senior employees, whose work largely consists of meetings and negotiation, adapted with relative ease. Junior employees, who often learn their trade by observing colleagues, found remote working far less forgiving. Studies conducted in several countries suggest that junior staff now take substantially longer to reach the level of competence their predecessors achieved within two years. There is also a social cost. Informal conversation — the exchange of a half-finished idea across a desk — is precisely the kind of interaction that remote working removes. Organisations that have lost this channel have found it difficult to rebuild, even after staff began returning to the office twice a week. Some critics argue that the office has become a monument to a pre-digital age, kept alive out of habit. They are not entirely wrong. Yet the more interesting question is not whether the office should disappear, but what it is for."],
+["Passage B","Every generation of parents has worried that the skills of its own age are being lost to the habits of the next. The current version of this anxiety concerns touch. Screens mediate an increasing share of everyday interaction, and the manual dexterity that once came automatically from typing on a keyboard or writing by hand is now learned deliberately, if at all. The concern is not new, and previous panics have largely dissolved. When calculators first appeared, teachers predicted that mental arithmetic would become a lost art; instead arithmetic became more conceptual and, arguably, more valuable. The same pattern is likely to apply to manual skill. There is, however, a reason to take the current anxiety more seriously than its predecessors. Earlier technologies replaced a task while leaving its underlying skill intact. Touchscreens remove the skill without replacing it. The consequence is not that fewer people can perform these tasks, but that an ability which was once distributed across the whole population is becoming concentrated among a small minority. Whether that concentration matters depends on what the ability is used for. The disappearance of handwriting is unlikely to prove serious. The disappearance of physical repair — the ability to open a device and understand why it has failed — is harder to dismiss."]
+];
+var SECTIONS=["Part 1 — Comprehension（閱讀理解）","Part 2 — Error Identification（揪錯）","Part 3 — Sentence Completion（句子填空）","Part 4 — Paragraph Improvement（段落改寫）"];
+var SEC_HINT=["以下每題配一篇短文，答主旨、推論、詞義、作用。","每題一句，有一個部分錯咗，揀「應該改成乜」。","揀最通順正確嘅填法。","以下每段有一個最主要弱點，揀指出問題最準嗰個。"];
+var Q=[
+[0,"What is the main purpose of Passage A?","To show that remote working has costs as well as benefits","To argue that offices are no longer necessary","To describe how employers reduced their costs","To explain why junior staff are underpaid","主旨題。首段講好處、中段講壞處（分布不均、社交成本），全篇係平衡陳述，所以主旨 = 有利有弊。"],
+[0,"\"permanent feature of the working week\" (para 1) suggests that remote working","was probably temporary after all","was opposed by most employees","affected only senior staff","is unlikely to be reversed soon","permanent = 長期存在。副詞 often 呢類題要由字面推論。"],
+[0,"Which can be inferred from para 2 about junior employees?","Senior staff have taken over some of the work juniors used to do","Junior employees now work shorter hours","Junior employees are paid less than senior staff","Employers now prefer to hire experienced staff","junior 靠「觀察同事」學嘢 → 而家學唔到 → 同一批工作自然由 senior 頂上。"],
+[0,"What is the function of paragraph 4?","To give examples of remote working","To introduce a new argument about pay","To describe a loss that is difficult to reverse","To compare offices in Britain and America","呢段講 informal conversation 消失、難重建 = 一個「難以逆轉嘅損失」。"],
+[0,"What is the writer's attitude to the critics in the final paragraph?","They are completely mistaken","They are entirely correct","Their argument is too old-fashioned to matter","They are partly right, but the question should be reframed","「not entirely wrong」+「the more interesting question is…」= 部分認同但轉移論點。"],
+[1,"Which best summarises Passage B?","New technology can concentrate a skill in fewer people rather than eliminating it","Children should be taught to write by hand","Earlier generations were right to worry about skills","Manual skills have become less important than they were","第三段係核心：唔係冇人識做，而係識做嘅人變少 → 技能被集中而唔係消失。"],
+[1,"\"The same pattern is likely to apply to manual skill\" refers to the situation in which","a new technology changes the nature of a skill instead of removing it","parents have always been anxious about new inventions","calculating devices improved the value of mental arithmetic","the use of screens is steadily increasing","上文 pattern = 計算機出現但腦算反而更有價值 → 科技改變技能性質。"],
+[1,"\"Earlier technologies replaced a task while leaving its underlying skill intact\" is used to","imply that earlier technologies were more reliable","imply that handwriting is no longer taught at all","contrast earlier technologies with touchscreens","suggest that keyboards are better than screens","「but Touchscreens remove the skill without replacing it」= 對比結構。"],
+[1,"Why does the writer consider the disappearance of handwriting unlikely to prove serious?","Because it is unlikely to affect job applications","Because very few people still write by hand","Because older people object to it","Because the ability is no longer practically necessary","對比 physical repair「harder to dismiss」→ handwriting 冇實用價值。"],
+[1,"\"not that fewer people can perform these tasks, but that an ability… is becoming concentrated\" emphasizes","a change in who holds the ability, rather than a loss of ability itself","that no ability at all is being lost","that the ability is now unimportant","that the writer's own argument is mistaken","not…but… 結構 = 強調「分布改變」而非「能力消失」。"],
+[null,"A number of applicants <u>was</u> rejected without notice.","is","were","being","have been","「A number of + 複數名詞」當整體，動詞用複數 were。"],
+[null,"Neither the manager nor his assistants <u>was</u> present at the meeting.","is","were","has been","are being","neither…nor… 係近似否定，動詞跟最近主語 assistants → were。"],
+[null,"He is one of the few engineers <u>who</u> is familiar with the legacy system.","are","was","have been","were","the + 複數名詞 + who → who = those who，動詞用複數 are。"],
+[null,"The report, together with the supporting documents, <u>are</u> being circulated to all staff.","is","was","has been","were","together with 唔改變主語 → 主語係 The report（單數）→ is。"],
+[null,"By the time we arrived, the meeting <u>already</u> had begun.","has","was","had","did","by the time + 過去式 → 過去完成式 had begun。"],
+[null,"There <u>is</u> a number of reasons why the plan failed.","are","was","has been","were","a number of + 複數 → there are。"],
+[null,"The government has issued a guideline <u>regard</u> the use of personal data.","regarding","regards","regarded","regarding to","guideline 後面用介詞片語：regarding（about）。"],
+[null,"He is used to <u>work</u> under pressure.","works","working","work in","have worked","be used to + V-ing。"],
+[null,"Each of the candidates <u>were</u> asked to explain their decision.","was","has been","are being","being","each of + 複數名詞 → 動詞單數 was。"],
+[null,"It was only after the results <u>have</u> been announced that the error was detected.","were","had","being","has","It was only after + 過去 → had been announced。"],
+[null,"The committee met to discuss ________ the new budget.","how it allocated","how allocating","how to allocate","how to allocation","discuss + how to do（不定式），代詞要 it。"],
+[null,"________ from the top of the tower, the city looks almost entirely grey.","Seeing","Seen","To see","Having seen","過去分詞片語作地點狀語 = Seen from…。"],
+[null,"The rule is simple enough ________ any member to understand.","such that","to","for","as","enough + for + 人 + to do。"],
+[null,"No sooner had the results been announced ________ the complaints began.","when","that","then","than","No sooner…than… 固定配對。"],
+[null,"It is essential that every application ________ by Friday.","is","be","being","will be","It is essential/necessary that + (should) + 原形 → be。"],
+[null,"The project was abandoned, ________ the enormous cost involved.","with","giving","at","given","past participle 片語表原因 = given the cost。"],
+[null,"The decline in numbers was ________ to a change in registration policy rather than to any fall in interest.","attributed","attributing","attributable","attribution","be attributable to = 可歸因於。"],
+[null,"Not until the report was published ________ the scale of the problem become clear.","could","did","had","was","Not until 引導倒裝，部分倒置 had。"],
+[null,"The lecture was so engaging that several members of the audience ________ the speaker to repeat the final section.","persuaded","forced","reminded","asked","ask sb to do sth 最自然；persuade/force 語氣太重。"],
+[null,"________ the deadline had passed, no further applications could be accepted.","Unless","Once","Should","If","Once + 過去完成時（once…had passed, no…could be accepted）。"],
+[null,"There are many reasons why the museum should stay open at weekends. For one thing, more people can visit. Also, opening at weekends would increase revenue. Furthermore, visitors who come on weekdays are often disappointed by the queues, which is a problem. In conclusion, the museum should open at weekends. <br><br>What is the main weakness?","The points are listed but not developed, so the conclusion is unsupported","It would be better to say specifically that young people would be attracted","The paragraph should mention that staff are underpaid","The building is very old","有觀點冇解釋 → 結論無支撐。呢類題搵「結構問題」，唔係搵「缺資料」。"],
+[null,"In my opinion, the policy is clearly wrong. Everyone knows it. It will fail. We should scrap it immediately. <br><br>What is the main weakness?","The paragraph uses too many short sentences","The writer's opinion is stated as though it were established fact","The paragraph lacks a topic sentence","The word \"immediately\" should be removed","In my opinion + Everyone knows it = 意見當事實，語氣（register）問題。"],
+[null,"The report was written by a committee of five. It took six months. It was published last week. The committee included three members from the finance ministry and two from the transport authority. The report makes thirty recommendations. <br><br>What is the main weakness?","The date of publication should be removed","The number of recommendations should come first","The details about the committee's membership and timetable are irrelevant to the main point","The paragraph has no concluding sentence","irrelevancy 係 Part 4 最常考弱點。"],
+[null,"There are several ways to improve the situation. The first is to increase funding. The second is to hire more staff. A third is to shorten the working week. There are also other measures but they are less important. The best one is to hire more staff. <br><br>What is the main weakness?","The list is too short","The word \"several\" should be replaced","The first measure is not explained","The final sentence contradicts the earlier statement that the other measures are less important","self-contradiction：頭先話 other measures less important，結尾卻話 hire more staff 最好。"],
+[null,"Although the bridge is old, it is still safe. Many people cross it every day. Engineers inspect it regularly. Therefore, the bridge should be demolished. <br><br>What is the main weakness?","The conclusion does not follow from the preceding sentences","The sentence \"Many people cross it every day\" is unnecessary","The paragraph should end with a question","The word \"Therefore\" is too formal","logically invalid conclusion。"],
+[null,"The average salary is HK$18,000. The median is HK$15,200. The highest is HK$120,000. This shows that salaries in the sector are very unequal. <br><br>What is the main weakness?","The average is misleading because a few very high salaries raise it","The median should be mentioned before the average","The highest salary should not be quoted","The figures should be rounded","有 median 同 highest 先證明到「不平均」；淨講 average 唔成立。"],
+[null,"Cycling to work is good for you. It is good for the environment. Everyone knows this. It is also good for the economy. In conclusion, cycling is good. <br><br>What is the main weakness?","The same claim is repeated instead of being developed","The paragraph should give statistics","The word \"Everyone\" should be removed","The final sentence repeats the topic sentence unnecessarily","重複 > 發展：每句都係「好」但冇一個講點解。"],
+[null,"The population of the town has fallen by 12 per cent since 2010. Most residents are now over 65. The town council proposes to close the primary school. A number of factors explain the decline. The number of births is low and the average age of first-time parents is rising. <br><br>What is the main weakness?","The figures are out of date","The population figures should come first","The proposal is mentioned too early","There is no link between the evidence given and the proposal described","論據同建議之間冇接駁句。"],
+[null,"There are two reports on the proposal. The first, published last year, concluded that it was affordable. The second, published this year by a different organisation, concluded that it was not. Therefore, the proposal should be abandoned. <br><br>What is the main weakness?","The two reports are described too briefly","The dates should be omitted","The conclusion treats two equally weighted sources as decisive","The second organisation should be named first","logic：兩份報告互相矛盾，唔可以直接推出 abandon。"],
+[null,"<span class=\"hint\">In conclusion, the new policy will be a failure.</span><br><br>What is the main weakness?","The word \"In conclusion\" should be removed","The paragraph is too long","The conclusion does not follow from the preceding discussion","The policy should be named earlier","part of a paragraph：結論同上文脫節。"]
+];
+var KEY=[0,3,0,2,3,0,0,2,3,0,1,1,0,0,2,0,0,1,0,1,2,1,2,3,1,3,2,2,3,1,0,1,2,3,0,0,0,3,2,2];
+var html="";
+for(var s=0;s<4;s++){
+  html+="<h2>"+SECTIONS[s]+"</h2><div class='hint'>"+SEC_HINT[s]+"</div>";
+  if(s===0){for(var p=0;p<2;p++){html+="<div class='passage'><h3>"+PASSAGES[p][0]+"</h3><p>"+PASSAGES[p][1]+"</p></div>";}}
+  for(var k=0;k<10;k++){
+    var i=s*10+k,q=Q[i];
+    html+="<div class='q'><div class='stem'><b>"+(i+1)+".</b> "+q[1]+"</div><div class='opts'>";
+    for(var o=0;o<4;o++){html+="<label><input type='radio' name='q"+(i+1)+"' value='"+o+"' onchange='upd()'> "+q[2+o]+"</label>";}
+    html+="</div></div>";
+  }
+}
+document.getElementById("exam").innerHTML=html;
+function upd(){var c=0;for(var i=1;i<=40;i++){if(document.querySelector("input[name=q"+i+"]:checked"))c++;}document.getElementById("prog").innerHTML="已答 "+c+" / 40";}
+function grade(){
+  var s=0,det=[],sec=[0,0,0,0],secm=[0,0,0,0];
+  for(var i=0;i<40;i++){
+    var el=document.querySelector("input[name=q"+(i+1)+"]:checked"),v=el?parseInt(el.value):-1,g=(v===KEY[i]);
+    if(g)s++;var si=Math.floor(i/10);if(g)sec[si]++;else if(v>=0)secm[si]++;
+    det.push({n:i+1,v:v,k:KEY[i],ok:g});
+  }
+  var o='<div class="res"><div class="big">'+s+" / 40（"+(s*2.5).toFixed(1)+"%）</div>";
+  o+="<table><tr><th>部分</th><th>答啱</th><th>答錯</th><th>冇答</th></tr>";
+  for(var j=0;j<4;j++){o+="<tr><td>"+SECTIONS[j].split("（")[0]+"</td><td class='ok'>"+sec[j]+"/10</td><td class='no'>"+secm[j]+"</td><td>"+(10-sec[j]-secm[j])+"</td></tr>";}
+  o+="</table>";
+  if(s<28){o+="<p style='color:#c0392b'><b>建議</b>：Part 2 同 Part 3 係最易拉低分嗰兩部分（語法結構 + 詞形），下次溫習先攻呢兩部分。</p>";}
+  else if(s>=36){o+="<p style='color:#0a7d3c'><b>狀態好</b>：穩陣，重點守 Part 1 inference 同 Part 4 弱點辨識。</p>";}
+  o+="</div><h2>逐題解析</h2>";
+  for(var n=0;n<40;n++){var d=det[n],q=Q[n];
+    var your=d.v>=0?String.fromCharCode(65+d.v):"—";
+    o+="<div class='q'><div class='stem'><b>"+d.n+".</b> "+(d.ok?"<span class='ok'>✔ 答啱</span>":"<span class='no'>✘ 答錯</span>")+"　你揀："+your+"　正確："+String.fromCharCode(65+d.k)+"</div>";
+    o+="<div class='hint'>選項 "+String.fromCharCode(65+d.k)+": "+q[2+d.k]+"</div><div class='exp'>"+q[6]+"</div></div>";
+  }
+  document.getElementById("out").innerHTML=o;
+  window.scrollTo({top:document.getElementById("out").offsetTop-60,behavior:"smooth"});
+}
+function resetAll(){document.querySelectorAll("input[type=radio]").forEach(function(e){e.checked=false;});document.getElementById("out").innerHTML="";upd();window.scrollTo({top:0,behavior:"smooth"});}
+upd();
+</script>
+
+<p class="nav" style="font-size:14px;color:#666;margin:28px 0 0"><a href="./cre-english-use-of-english.html" style="color:#0b3d91">← CRE Use of English 練習</a>
+ · <a href="./cre-english-mock-paper-b.html" style="color:#0b3d91">模擬卷 B</a>
+ · <a href="/notes/" style="color:#0b3d91">All field notes</a></p>
+<footer style="margin-top:1.5rem;text-align:center;color:#666;font-size:13px"><a href="/" style="color:#0b3d91">kpoleung.com</a> · <a href="/notes/" style="color:#0b3d91">Field notes</a></footer>
+</body></html>
